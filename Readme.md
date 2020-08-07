@@ -15,7 +15,7 @@ PFA image, Unfortunately, I am not able to find the image with data on Suggested
 
 If you want to sync this suggestion data on the train data which is being managed by manual or other tool and the suggestion data which is being created from QnA Maker. you can utilize this code. 
 
-![ref](https://github.com/kimtth/azure-bot-active-learning-sync/blob/master/references/exported-knowledge-base-with-metadata.png)
+![ref](https://github.com/kimtth/azure-bot-active-learning-sync/blob/master/resources/exported-knowledge-base-with-metadata.png?raw=true)
 
 * References
  https://docs.microsoft.com/en-us/azure/cognitive-services/qnamaker/how-to/improve-knowledge-base
