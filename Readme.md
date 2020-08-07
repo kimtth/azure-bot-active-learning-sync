@@ -11,7 +11,7 @@ The matching algorithm for detecting the existence of duplicates question and an
 ### Template excel format of Azure Bot Framework Train data for batch.
 
 Once export data from QnA Maker when active learning turns on, you will find auto-generate suggestion data on the SuggestedQuestions column. 
-PFA image, Unfortunately, I am not able to find the image with data on SuggestedQuestions column.
+PFA image and blue highlighted area, Unfortunately, I am not able to find the image with data on SuggestedQuestions column.
 
 If you want to sync this suggestion data on the train data which is being managed by manual or other tool and the suggestion data which is being created from QnA Maker. you can utilize this code. 
 
