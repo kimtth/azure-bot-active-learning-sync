@@ -149,16 +149,6 @@ def filtering_if_suggested_questions_is_not_empty(from_QA, output_dir_path, inte
         sys.exit()
 
 
-def copy_result_input_hiragana(output_file_path, from_SP, tsv):
-    base_path = os.path.abspath(".")
-    save_path = os.path.join(base_path, 'input_hiragana')
-    if not os.path.exists(save_path):
-        os.mkdir(save_path)
-
-    output_file_path = output_file_path.replace('ret_sync_active', 'input_hiragana')
-    write_result(output_file_path, from_SP, tsv)
-
-
 def clean_and_unique_df(from_SP_copy, from_QA_copy, mode):
     from_SP_copy['Question'] = from_SP_copy['Question'].apply(text_cleaner)
     from_QA_copy['Question'] = from_QA_copy['Question'].apply(text_cleaner)
@@ -195,7 +185,7 @@ def compare_child_group_SP_and_QA(question, parent_childs_from_SP, parent_childs
 def updating_SP_using_the_data_from_one_and_two(from_SP, from_QA, diff_Q_only_in_QA_copy, diff_suggested_only_in_QA,
                                                 output_dir_path, intent):
     try:
-        # 03. Updating SuggestedQuestions column of SharePoint
+        # 03. Updating SuggestedQuestions column of Previous Train Data
         from_SP_copy = from_SP.copy()
         from_QA_copy = from_QA.copy()
         from_SP_copy, from_QA_copy = clean_and_unique_df(from_SP_copy, from_QA_copy, True)
@@ -215,7 +205,7 @@ def updating_SP_using_the_data_from_one_and_two(from_SP, from_QA, diff_Q_only_in
         logger.info("Completed: " + output_dir_path + '\\' + '_diff_3_update_suggest.xlsx')
         write_result(output_dir_path + '\\' + intent + '_diff_3_update_suggest.xlsx', from_SP, False)
 
-        # 04. Adding Child questions from QnA Maker to SharePoint
+        # 04. Adding Child questions from QnA Maker to Previous Train Data
         append_row = []
         for i, row in diff_Q_only_in_QA_copy.iterrows():
             question = row['Question']
@@ -272,14 +262,14 @@ if __name__ == "__main__":
     excel_file_path = ''
     excel_file_active_path = ''
 
-    excel_path = filedialog.askopenfile(mode='r', filetypes=[('Prev Train Data (Excel) Files', '*.xlsx')])
+    excel_path = filedialog.askopenfile(mode='r', filetypes=[('Previous Train Data (Excel) Files', '*.xlsx')])
     if excel_path:
         excel_file_path = str(excel_path.name)
         print(excel_file_path)
     else:
         messagebox.showinfo("Information", "Please set the file.")
 
-    excel_path = filedialog.askopenfile(mode='r', filetypes=[('QnA Maker (Excel) Files', '*.xlsx')])
+    excel_path = filedialog.askopenfile(mode='r', filetypes=[('Current QnA Maker (Excel) Files', '*.xlsx')])
     if excel_path:
         excel_file_active_path = str(excel_path.name)
         print(excel_file_active_path)
